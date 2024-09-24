@@ -19,18 +19,20 @@ def main():
     tmr = 0
     while True:
         fps = 200
+        move_x = 0
+        move_y = 0
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed() #キーの押下状態を取得
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0,-1))
+            move_y -= 1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0,+1))
+            move_y += 1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((+2,0))
+            move_x += 2
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1,0))
-        kk_rct.move_ip((-1, 0)) #演習1
+            move_x -= 1
+        kk_rct.move_ip((move_x-1, move_y)) #演習1 --> 演習2
         x = -(tmr%3200)
         screen.blit(bg_img, [x, 0])
         screen.blit(bg_fl_img, [x+1600, 0])
